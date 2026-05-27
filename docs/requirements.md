@@ -155,7 +155,16 @@ These items may not all be required for the first launch, but they should influe
 - Advanced AI supervision with model versioning, prompt/action logs, confidence scores, human override, and bias or safety checks.
 - Modular platform design so future modules such as telehealth, medical billing, pharmacy, franchise operations, and external partner APIs can be added without rebuilding the core.
 
-## 8. Open Questions for Product Team
+## 8. Product Visual References
+
+Use these images when presenting the product concept to the product team:
+
+- [Super Admin Command Center](product-visuals/super-admin-command-center.png) - dashboard concept for monitoring tickets, payroll, inventory, training, AI review, incidents, compliance, and user performance.
+- [Mobile Staff Workspace](product-visuals/mobile-staff-workspace.png) - mobile app concept for daily staff workflows, voice input, scanning, tickets, roster, leave, handover, training, stock alerts, incidents, and payroll readiness.
+- [Universal Ticket Workflow](product-visuals/universal-ticket-workflow.png) - workflow concept showing how activity moves from ticket creation through assignment, evidence, approval, payroll readiness, reporting, and audit.
+- [Product Ecosystem Map](product-visuals/product-ecosystem-map.png) - high-level product scope map showing platform modules around Healthcare Doctors OS.
+
+## 9. Open Questions for Product Team
 
 - Which modules are mandatory for first launch?
 - What exact patient information can be stored in the MVP?
