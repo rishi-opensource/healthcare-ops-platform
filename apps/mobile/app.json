@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Healthcare Doctors OS",
+    "slug": "healthcare-doctors-os",
+    "scheme": "healthcaredoctors",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Healthcare Doctors OS to scan barcodes and capture operational evidence."
+        }
+      ],
+      "expo-router"
+    ]
+  }
+}
+

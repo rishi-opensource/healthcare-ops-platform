@@ -1,0 +1,32 @@
+{
+  "name": "@healthcare/mobile",
+  "private": true,
+  "version": "0.1.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@healthcare/api-client": "0.1.0",
+    "@healthcare/ui": "0.1.0",
+    "@tanstack/react-query": "^5.90.0",
+    "expo": "latest",
+    "expo-camera": "latest",
+    "expo-router": "latest",
+    "expo-secure-store": "latest",
+    "nativewind": "^4.2.0",
+    "react": "latest",
+    "react-hook-form": "^7.65.0",
+    "react-native": "latest",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "typescript": "^5.9.3"
+  }
+}
+

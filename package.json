@@ -1,0 +1,24 @@
+{
+  "name": "healthcare-doctors-os",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "apps/mobile",
+    "packages/api-client",
+    "packages/ui",
+    "packages/config"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @healthcare/web run dev",
+    "dev:mobile": "npm --workspace @healthcare/mobile run start",
+    "lint": "npm --workspaces --if-present run lint",
+    "typecheck": "npm --workspaces --if-present run typecheck",
+    "generate:api": "npm --workspace @healthcare/api-client run generate",
+    "test": "npm --workspaces --if-present run test"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
+

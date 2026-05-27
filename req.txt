@@ -1,0 +1,711 @@
+Product Requirements Document
+Healthcare Doctors Adaptive Healthcare Operating System
+1. Product Summary
+
+We are building a mobile-first, web-mirrored healthcare business operating platform for Thoshi Medicals Pty Ltd trading as Healthcare Doctors.
+
+The product is not just a CRM. It is a unified operating system that manages:
+
+human and non-human onboarding,
+contracts and consent,
+tasks and tickets,
+payroll and payments,
+rosters and leave,
+inventory and barcode scanning,
+AI receptionist and AI agents,
+compliance and audit,
+patient-facing and staff-facing workflows,
+super admin monitoring and reporting.
+
+The central concept is:
+
+Every important business activity creates a ticket, every ticket is traceable, and every user or system action can be monitored, approved, audited, and reported.
+
+2. Why We Are Building It
+
+Healthcare Doctors needs a single platform to run daily healthcare operations more efficiently, safely, and transparently.
+
+The current business vision requires one system where:
+
+staff can work from mobile phones,
+managers can approve tasks and payments,
+the business can track completed work,
+payroll can be linked to verified activity,
+inventory can be controlled with barcode scanning,
+AI agents can support operations,
+legal contracts and consents are recorded,
+super admins can monitor the entire business in real time.
+
+The goal is to reduce manual work, improve accountability, support future business growth, and create a scalable healthcare operations platform for the next 5 years.
+
+3. Target Audience and User Roles
+Primary Administrative Users
+
+Super Admin
+Owns the full system view. Can monitor all users, tickets, payroll, inventory, contracts, AI activity, compliance, reporting, and business performance.
+
+Clinic Manager / Practice Manager
+Manages day-to-day clinic operations, rosters, approvals, staff performance, patient flow, and escalations.
+
+HR / Payroll Admin
+Manages onboarding, employment documents, leave, attendance, timesheets, payroll approval, appraisals, and exit workflows.
+
+Finance / Accounts User
+Manages invoices, supplier payments, payroll payment approval, tax reporting, BAS/GST reporting, expenses, and financial controls.
+
+Compliance Officer
+Monitors training, incidents, audit trails, policy acknowledgements, privacy requirements, consent records, and compliance risks.
+
+Healthcare Operations Users
+
+Receptionist
+Uses the mobile app for daily tasks including patient communication, appointment support, stock scanning, ticket creation, roster viewing, leave requests, training, contracts, shift handover, incident reporting, and payroll visibility.
+
+Doctors / Practitioners
+Manage appointments, consultations, clinical tasks, prescriptions, referrals, patient communications, work summaries, timesheets, and payments where relevant.
+
+Nurses / Clinical Assistants
+Manage patient support workflows, treatment room tasks, stock usage, incident reporting, equipment checks, and clinical task tickets.
+
+Pharmacist / Medication Manager
+Manages medication stock, expiry checks, prescription-related workflows, controlled item tracking, supplier issues, and barcode-based stock movements.
+
+Inventory / Procurement User
+Manages stock, suppliers, purchase orders, delivery scanning, reorder alerts, damaged goods, expiry items, and asset tracking.
+
+External and Non-Human Actors
+
+Patients
+Interact through booking, reminders, consent, communication, check-in, feedback, and possibly telehealth workflows.
+
+Suppliers / Vendors
+Can be onboarded, contracted, linked to purchase orders, deliveries, invoices, compliance checks, and payment workflows.
+
+Contractors / Service Providers
+Can be onboarded, assigned jobs, submit completion evidence, and be paid after approval.
+
+AI Receptionist
+Can answer calls, create appointment tickets, generate follow-up tasks, escalate issues, and support patient communication under supervision.
+
+Other AI Agents
+May support finance, inventory, compliance, HR, procurement, reporting, and knowledge assistance.
+
+Assets / Inventory / Devices / Branches
+Non-human entities that can be onboarded, tracked, assigned, scanned, audited, and linked to tickets.
+
+4. Main Business Goals
+Create one central operating platform for Healthcare Doctors instead of disconnected tools.
+Make every business activity traceable through a universal ticket system.
+Improve payroll accuracy by linking pay approvals to verified work, attendance, rosters, and completed tickets.
+Improve operational control through super admin dashboards, reports, audit logs, and user performance visibility.
+Reduce manual administration using guided workflows, AI assistance, barcode scanning, and approvals.
+Support healthcare compliance through contracts, consent, training, audit history, incident reporting, and privacy controls.
+Improve stock and procurement control using barcode scanning, expiry tracking, delivery scanning, reorder alerts, and purchase tickets.
+Enable mobile-first working so staff can perform daily activities from their phones, with mirrored web access.
+Prepare for future scale across multiple clinics, branches, service categories, AI agents, and business units.
+5. Key User Needs
+Super Admin Needs
+
+The super admin needs to:
+
+view all users and roles,
+monitor tasks completed by each user,
+see relevant ticket numbers for completed work,
+click into each task for detailed information,
+provide feedback or appraisal for user performance,
+monitor payroll readiness,
+approve or reject payments,
+view leave, roster, attendance, and productivity,
+monitor inventory, incidents, contracts, training, AI actions, and compliance,
+generate reports for management, tax, audit, and operations.
+Receptionist Needs
+
+The receptionist needs to:
+
+complete onboarding from mobile,
+sign employment and policy documents,
+complete training modules,
+use voice commands inside the app,
+manage daily tasks from one home screen,
+view roster and shift details,
+request leave,
+create and update tickets,
+scan barcodes for stock, deliveries, assets, patients, visitors, and forms,
+communicate with patients and staff,
+perform shift handover,
+report incidents,
+check training status,
+view payroll status and completed work,
+receive feedback from managers.
+Doctor / Practitioner Needs
+
+Doctors need to:
+
+view appointments and patient-related tasks,
+complete assigned clinical or administrative tickets,
+communicate with reception and admin teams,
+manage work completion records,
+track earnings or session payments where relevant,
+manage documentation, referrals, prescriptions, and follow-up tasks,
+comply with training, contract, and policy requirements.
+HR / Payroll Needs
+
+HR and payroll teams need to:
+
+onboard staff and contractors,
+collect contracts and documents,
+track training and certifications,
+manage leave and rosters,
+verify attendance and completed work,
+review timesheets,
+approve payroll,
+manage appraisals and performance records,
+handle exit workflows and access removal.
+Inventory and Procurement Needs
+
+Inventory users need to:
+
+onboard inventory items and assets,
+scan barcodes and QR codes,
+manage stock usage,
+track expiry dates and batch numbers,
+create reorder tickets,
+process deliveries,
+manage supplier issues,
+link stock movement to tickets, users, and locations.
+Compliance Needs
+
+Compliance users need to:
+
+monitor privacy acknowledgements,
+track patient consent,
+review incident reports,
+check audit trails,
+manage policy acceptance,
+monitor mandatory training completion,
+identify expired documents or certifications,
+supervise AI-generated activity.
+6. Must-Have Requirements
+6.1 Universal Ticket System
+
+The platform must allow every major activity to create or link to a ticket.
+
+Examples include:
+
+onboarding ticket,
+patient issue ticket,
+appointment ticket,
+inventory ticket,
+purchase order ticket,
+payroll approval ticket,
+leave request ticket,
+incident report ticket,
+contract review ticket,
+AI-created ticket,
+supplier issue ticket,
+maintenance ticket.
+
+Each ticket must include:
+
+unique ticket number,
+creator,
+assigned user,
+status,
+priority,
+due date,
+related user/entity,
+attachments or evidence,
+notes,
+approval history,
+completion summary,
+audit history.
+6.2 Super Admin Dashboard
+
+The super admin must have a complete command dashboard showing:
+
+total open tickets,
+completed tickets,
+overdue tasks,
+payroll pending approval,
+users currently working,
+roster status,
+leave requests,
+inventory alerts,
+contract alerts,
+training alerts,
+compliance risks,
+AI activity,
+financial summaries,
+incidents and escalations.
+
+The dashboard must be clickable and allow the super admin to move from summary view to detailed view.
+
+6.3 User Ecosystem Management
+
+The super admin must be able to view all users by role, including:
+
+doctors,
+receptionists,
+nurses,
+finance users,
+HR users,
+pharmacists,
+contractors,
+suppliers,
+AI agents,
+branch users,
+patients where relevant.
+
+For each user, the system must show:
+
+profile details,
+role,
+onboarding status,
+training status,
+contracts signed,
+roster status,
+attendance,
+completed tickets,
+payroll status,
+appraisal history,
+compliance status.
+6.4 Completed Task Summary and Appraisal
+
+For each user, the super admin must be able to view a summary of completed tasks.
+
+Each task summary must show:
+
+task name,
+ticket number,
+completion date and time,
+task category,
+time spent,
+outcome,
+approval status,
+related patient, supplier, stock item, or department where relevant.
+
+Each task must have a More Details link.
+
+When clicked, the system must show:
+
+full task description,
+ticket timeline,
+user actions,
+AI involvement if any,
+attachments or proof,
+notes and comments,
+patient or operational impact,
+compliance result,
+approval history.
+
+The super admin must be able to provide:
+
+feedback,
+appraisal comments,
+performance rating,
+approval for payroll linkage,
+request for correction or follow-up.
+6.5 Human Onboarding
+
+The system must support onboarding for:
+
+employees,
+doctors,
+contractors,
+suppliers,
+service providers,
+patients where relevant.
+
+Human onboarding must include:
+
+identity details,
+role selection,
+document upload,
+verification checklist,
+contract assignment,
+e-signature status,
+training assignment,
+payroll or payment setup,
+2FA setup,
+approval workflow,
+activation status.
+6.6 Non-Human Onboarding
+
+The system must support onboarding of non-human business entities, including:
+
+inventory items,
+medicines,
+equipment,
+devices,
+vehicles,
+rooms,
+branches,
+software subscriptions,
+AI agents,
+supplier accounts,
+digital assets,
+contracts,
+services.
+
+Each non-human entity must have:
+
+unique ID,
+category,
+owner or responsible person,
+status,
+documents,
+barcode or QR code where relevant,
+linked tickets,
+lifecycle history.
+6.7 Contract and Consent Management
+
+The system must support digital contract and consent workflows.
+
+Required contract/document types include:
+
+employment agreement,
+contractor agreement,
+doctor/practitioner agreement,
+supplier agreement,
+confidentiality agreement,
+device usage policy,
+privacy acknowledgement,
+AI usage acknowledgement,
+patient consent,
+service agreement,
+policy acknowledgement.
+
+The system must track:
+
+assigned contracts,
+signed contracts,
+pending contracts,
+expired contracts,
+renewed contracts,
+version history,
+user acknowledgement.
+6.8 Training and Certification
+
+The platform must include training modules for staff.
+
+Training should include:
+
+privacy and confidentiality,
+cybersecurity awareness,
+emergency response,
+workplace conduct,
+infection control,
+barcode and inventory handling,
+AI usage rules,
+patient communication,
+incident reporting.
+
+The system must track:
+
+assigned modules,
+completion status,
+quiz or assessment result,
+certificate issue date,
+expiry date,
+overdue training,
+manager review.
+6.9 Payroll, Timesheet and Payment Approval
+
+The platform must support payroll and payment control.
+
+The system must link payroll to:
+
+rostered hours,
+actual attendance,
+completed tasks,
+approved tickets,
+leave records,
+overtime,
+manager approval.
+
+The super admin or authorised manager must be able to:
+
+review payroll summaries,
+check completed work,
+approve or reject payment,
+view payroll exceptions,
+approve contractor payments,
+view supplier payment status.
+6.10 Roster and Leave Management
+
+The system must support:
+
+roster viewing,
+shift allocation,
+shift swaps,
+clock-in and clock-out,
+leave requests,
+leave approval,
+leave balance,
+staff availability,
+overtime alerts,
+shift handover.
+
+Receptionists and other staff must be able to manage these from mobile.
+
+6.11 Inventory and Barcode Management
+
+The system must support barcode and QR scanning from mobile.
+
+Barcode use cases must include:
+
+inventory item scanning,
+medicine scanning,
+batch tracking,
+expiry checking,
+delivery scanning,
+purchase order matching,
+damaged stock reporting,
+stock transfer between branches,
+asset tracking,
+equipment maintenance,
+staff ID scanning,
+visitor badge scanning,
+patient check-in QR,
+appointment QR,
+consent form QR,
+ticket QR,
+prescription barcode where applicable.
+
+Scanning should allow users to:
+
+create a ticket,
+update stock,
+verify delivery,
+report issue,
+attach evidence,
+escalate to manager.
+6.12 AI Agents and Voice Interaction
+
+The system must allow authorised users to interact with the app using voice input from their phones.
+
+Voice capabilities should include:
+
+create a ticket,
+search patient appointment,
+check stock,
+request leave,
+update task status,
+ask policy questions,
+start shift handover,
+report incident,
+request help from AI assistant.
+
+The system must also support AI-created or AI-assisted workflows, including:
+
+AI receptionist,
+AI inventory assistant,
+AI payroll assistant,
+AI compliance assistant,
+AI knowledge assistant,
+AI procurement assistant.
+
+AI actions must be visible to authorised users and must be reviewable.
+
+6.13 Patient Communication Hub
+
+The platform must support patient communication workflows, including:
+
+appointment reminders,
+booking confirmations,
+follow-up messages,
+patient complaints,
+escalation tickets,
+telehealth communication where relevant,
+missed appointment workflows,
+patient feedback.
+
+Communication history should be linked to the relevant patient, ticket, appointment, or staff user.
+
+6.14 Incident, Escalation and Emergency Workflows
+
+The system must allow staff to report and escalate:
+
+patient complaints,
+aggressive behaviour,
+clinical incidents,
+equipment issues,
+medication or stock issues,
+workplace safety incidents,
+cybersecurity concerns,
+privacy breaches,
+emergency situations.
+
+Incident reports must include:
+
+description,
+category,
+priority,
+evidence upload,
+responsible manager,
+follow-up actions,
+closure status.
+
+A panic or emergency workflow should be available for staff safety and urgent healthcare situations.
+
+6.15 Shift Handover
+
+The system must support shift handover between staff.
+
+Handover should include:
+
+pending tickets,
+urgent patient issues,
+unresolved calls,
+stock alerts,
+delivery notes,
+incidents,
+manager messages,
+acknowledgement by next shift.
+6.16 Reporting and Back Office
+
+The platform must support back-office reporting for:
+
+payroll,
+tax preparation,
+finance,
+staff performance,
+ticket performance,
+inventory,
+procurement,
+compliance,
+training,
+contracts,
+incidents,
+AI activity,
+branch performance.
+
+Reports should be available to authorised users only.
+
+6.17 Audit and Compliance
+
+The system must maintain a clear record of:
+
+who did what,
+when it happened,
+which ticket it relates to,
+what was approved,
+what was changed,
+what was rejected,
+which contracts were signed,
+which training was completed,
+which AI actions occurred.
+
+This is required for operational control, healthcare compliance, payroll verification, dispute handling, and legal protection.
+
+6.18 Mobile-First Experience
+
+All key user journeys must work from a mobile phone.
+
+Mobile users must be able to:
+
+log in securely,
+view dashboard,
+create and complete tickets,
+scan barcodes,
+use voice input,
+view roster,
+request leave,
+complete training,
+sign documents,
+communicate with team,
+view payroll status,
+complete shift handover.
+
+The web version should mirror the mobile experience and provide larger dashboard views for admin users.
+
+7. Nice-to-Have Requirements
+
+These are valuable but may be delivered after the core product is working.
+
+Multi-branch operations and branch switching.
+Predictive staffing suggestions.
+Burnout and workload alerts.
+AI-based fraud or anomaly detection.
+Gamification and recognition badges.
+Staff wellbeing check-ins.
+Offline mode for temporary internet loss.
+Advanced supplier risk scoring.
+AI-generated management summaries.
+Advanced patient journey analytics.
+Franchise or multi-entity business support.
+Visitor management with badge printing.
+Advanced document OCR and auto-categorisation.
+Smart reorder forecasting.
+Internal app/module marketplace for future expansion.
+8. Assumptions
+Healthcare Doctors wants one central platform rather than separate systems for CRM, HR, payroll, inventory, ticketing, and compliance.
+All users will primarily access the system from mobile phones, with web access for admin and reporting.
+Every operational activity should be traceable through a ticket or linked record.
+Payroll approval should depend on verified attendance, rostered hours, and completed/approved work.
+AI agents will assist but should not replace human approval for sensitive actions.
+Barcode and QR scanning will be important for inventory, assets, tickets, forms, and identification.
+Contracts, privacy acknowledgements, and training records are required for compliance.
+Super admin needs full visibility across users, tasks, payroll, inventory, compliance, and AI activity.
+9. Risks and Open Questions
+Product Risks
+The product scope is very large and may become difficult to launch if everything is built at once.
+Too many features may overwhelm staff unless the user experience is simple.
+Staff may resist using the system if workflows are slower than current manual processes.
+AI-generated actions may create legal or operational risk if not reviewed properly.
+Payroll-linked task tracking may create disputes if completion rules are unclear.
+Barcode workflows may fail if physical labelling and scanning procedures are not well managed.
+Healthcare compliance requirements may vary depending on services offered.
+Patient data handling requires strict privacy and access controls.
+Poor data quality could reduce trust in reports and AI suggestions.
+Open Questions
+Which user roles are required for the first release?
+Which workflows must be included in the MVP?
+Which payroll rules apply to employees, contractors, doctors, and suppliers?
+Which contracts are legally required for each role?
+Which patient-facing features are required in the first version?
+Should patients log in to the same platform or a separate patient portal?
+Which accounting, payroll, banking, or medical systems must be connected?
+What approval limits should apply to payments, stock orders, and payroll?
+Who can approve appraisal feedback?
+Who can override AI-created tickets or AI recommendations?
+What reports are required for tax, compliance, and management?
+How many branches or locations must be supported initially?
+10. Missing Information Requiring Clarification
+
+Before product design is finalised, the team needs clarity on:
+
+MVP scope
+Which modules must launch first: onboarding, ticketing, payroll, inventory, AI receptionist, contracts, training, or super admin dashboard?
+User role hierarchy
+Exact permissions for super admin, manager, receptionist, doctor, nurse, finance, HR, supplier, contractor, and AI agents.
+Payroll rules
+How different users are paid: hourly, salary, session-based, contractor invoice, commission, or supplier payment.
+Contract templates
+Which legal agreements must be used for each user type and entity type.
+Healthcare compliance requirements
+Which specific Australian healthcare obligations apply to the services Healthcare Doctors provides.
+Patient data boundaries
+What patient information will be stored, who can access it, and how consent will be captured.
+Inventory categories
+Whether the system will manage general stock only, medicines, controlled substances, equipment, assets, or all of these.
+Barcode standards
+What needs barcode labels from day one: stock, assets, patients, appointments, staff IDs, visitors, forms, prescriptions, or tickets.
+AI responsibility boundaries
+Which actions AI can perform automatically and which require human approval.
+Reporting priorities
+Which reports are required for launch: payroll, tax, stock, user productivity, compliance, incidents, contracts, or AI activity.
+11. Product Success Measures
+
+The product should be considered successful if it enables Healthcare Doctors to:
+
+onboard staff, suppliers, assets, and AI agents with clear approvals,
+track all key business activities through tickets,
+allow staff to complete daily work from mobile,
+allow super admin to view completed tasks by user and ticket number,
+support task detail review and appraisal,
+approve payroll based on verified work,
+reduce manual stock and procurement errors,
+improve compliance visibility,
+improve accountability across all users,
+provide a single source of truth for business operations.
