@@ -203,3 +203,17 @@ class TicketApprovalDecisionSerializer(serializers.Serializer):
         ]
     )
     decision_note = serializers.CharField(required=False, allow_blank=True)
+
+
+class TaskAppraisalSerializer(serializers.Serializer):
+    appraisal_rating = serializers.IntegerField(min_value=1, max_value=5)
+    appraisal_comments = serializers.CharField(required=False, allow_blank=True)
+
+
+class PayrollApprovalSerializer(serializers.Serializer):
+    approved = serializers.BooleanField(default=True)
+    note = serializers.CharField(required=False, allow_blank=True)
+
+
+class CorrectionRequestSerializer(serializers.Serializer):
+    note = serializers.CharField()

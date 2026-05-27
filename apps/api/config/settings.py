@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     "entities",
     "tickets",
     "documents",
+    "workforce",
+    "inventory",
     "api",
 ]
 
@@ -148,6 +150,18 @@ SPECTACULAR_SETTINGS = {
         "EntityStatusEnum": "entities.models.Entity.Status",
         "EntityOnboardingStatusEnum": "entities.models.EntityOnboarding.Status",
         "OnboardingStepCompletionStatusEnum": "entities.models.OnboardingStepCompletion.Status",
+        "DocumentAssignmentStatusEnum": "documents.models.DocumentAssignment.Status",
+        "ConsentRecordStatusEnum": "documents.models.ConsentRecord.Status",
+        "TrainingAssignmentStatusEnum": "documents.models.TrainingAssignment.Status",
+        "ShiftStatusEnum": "workforce.models.Shift.Status",
+        "LeaveRequestStatusEnum": "workforce.models.LeaveRequest.Status",
+        "AttendanceRecordStatusEnum": "workforce.models.AttendanceRecord.Status",
+        "HandoverNoteStatusEnum": "workforce.models.HandoverNote.Status",
+        "TimesheetSummaryStatusEnum": "workforce.models.TimesheetSummary.Status",
+        "StockItemStatusEnum": "inventory.models.StockItem.Status",
+        "StockMovementTypeEnum": "inventory.models.StockMovement.MovementType",
+        "PurchaseOrderStatusEnum": "inventory.models.PurchaseOrder.Status",
+        "BarcodeTargetTypeEnum": "inventory.models.BarcodeAlias.TargetType",
     },
 }
 
@@ -159,3 +173,9 @@ CORS_ALLOWED_ORIGINS = env_list(
 CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://127.0.0.1:6379/0")
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_TASK_ALWAYS_EAGER = env_bool("CELERY_TASK_ALWAYS_EAGER", DEBUG)
+CELERY_BEAT_SCHEDULE = {
+    "refresh-compliance-expiry-statuses": {
+        "task": "documents.tasks.refresh_compliance_expiry_statuses",
+        "schedule": 60 * 60,
+    },
+}

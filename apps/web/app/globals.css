@@ -300,6 +300,12 @@ textarea {
   margin: 18px 0;
 }
 
+.dashboard-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -339,6 +345,29 @@ textarea {
 .timeline {
   display: grid;
   gap: 8px;
+}
+
+.table {
+  display: grid;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.table-row {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(180px, 1.4fr) repeat(5, minmax(90px, 1fr));
+  min-width: 720px;
+  padding: 10px 0;
+}
+
+.table-head {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .subcard,

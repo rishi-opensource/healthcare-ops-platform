@@ -273,3 +273,77 @@ def review_ticket_approval(
         metadata={"approval_id": approval.id, "status": status, "decision_note": decision_note},
     )
     return approval
+
+
+@transaction.atomic
+def appraise_task_completion(
+    *,
+    ticket: Ticket,
+    actor_user,
+    appraisal_rating: int,
+    appraisal_comments: str = "",
+    request=None,
+) -> TaskCompletion:
+    if not hasattr(ticket, "task_completion"):
+        raise ValidationError({"task_completion": "This ticket does not have a task completion record."})
+    completion = ticket.task_completion
+    completion.appraisal_rating = appraisal_rating
+    completion.appraisal_comments = appraisal_comments
+    completion.save(update_fields=["appraisal_rating", "appraisal_comments", "updated_at"])
+    record_audit_event(
+        actor_user=actor_user,
+        action="ticket.task.appraise",
+        target=ticket,
+        request=request,
+        metadata={"rating": appraisal_rating, "comments": appraisal_comments},
+    )
+    return completion
+
+
+@transaction.atomic
+def approve_payroll_link(
+    *,
+    ticket: Ticket,
+    actor_user,
+    approved: bool = True,
+    note: str = "",
+    request=None,
+) -> TaskCompletion:
+    if not hasattr(ticket, "task_completion"):
+        raise ValidationError({"task_completion": "This ticket does not have a task completion record."})
+    completion = ticket.task_completion
+    completion.payroll_link_approved = approved
+    completion.save(update_fields=["payroll_link_approved", "updated_at"])
+    if note:
+        TicketComment.objects.create(ticket=ticket, author=actor_user, body=note, is_internal=True)
+    record_audit_event(
+        actor_user=actor_user,
+        action="ticket.task.payroll_link",
+        target=ticket,
+        request=request,
+        metadata={"approved": approved, "note": note},
+    )
+    return completion
+
+
+@transaction.atomic
+def request_ticket_correction(*, ticket: Ticket, actor_user, note: str, request=None) -> Ticket:
+    from_status = ticket.status
+    ticket.status = Ticket.Status.NEEDS_CORRECTION
+    ticket.save(update_fields=["status", "updated_at"])
+    TicketStatusHistory.objects.create(
+        ticket=ticket,
+        from_status=from_status,
+        to_status=Ticket.Status.NEEDS_CORRECTION,
+        changed_by=actor_user,
+        note=note,
+    )
+    TicketComment.objects.create(ticket=ticket, author=actor_user, body=note, is_internal=True)
+    record_audit_event(
+        actor_user=actor_user,
+        action="ticket.correction.request",
+        target=ticket,
+        request=request,
+        metadata={"from_status": from_status, "note": note},
+    )
+    return ticket

@@ -13,6 +13,10 @@ from accounts.permissions import has_role
 
 from .models import Ticket, TicketApproval
 from .serializers import (
+    CorrectionRequestSerializer,
+    PayrollApprovalSerializer,
+    TaskAppraisalSerializer,
+    TaskCompletionSerializer,
     TicketApprovalDecisionSerializer,
     TicketApprovalRequestSerializer,
     TicketApprovalSerializer,
@@ -26,10 +30,13 @@ from .serializers import (
 )
 from .services import (
     add_ticket_comment,
+    appraise_task_completion,
+    approve_payroll_link,
     assign_ticket,
     complete_ticket,
     create_ticket,
     request_ticket_approval,
+    request_ticket_correction,
     review_ticket_approval,
     transition_ticket,
 )
@@ -193,6 +200,48 @@ class TicketViewSet(ModelViewSet):
         )
         return Response(TicketApprovalSerializer(approval, context={"request": request}).data)
 
+    @extend_schema(request=TaskAppraisalSerializer, responses=TaskCompletionSerializer)
+    @action(detail=True, methods=["post"], url_path="appraisal")
+    def appraisal(self, request, pk=None):
+        ticket = self.get_object()
+        serializer = TaskAppraisalSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        completion = appraise_task_completion(
+            ticket=ticket,
+            actor_user=request.user,
+            request=request,
+            **serializer.validated_data,
+        )
+        return Response(TaskCompletionSerializer(completion, context={"request": request}).data)
+
+    @extend_schema(request=PayrollApprovalSerializer, responses=TaskCompletionSerializer)
+    @action(detail=True, methods=["post"], url_path="approve-payroll-link")
+    def approve_payroll(self, request, pk=None):
+        ticket = self.get_object()
+        serializer = PayrollApprovalSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        completion = approve_payroll_link(
+            ticket=ticket,
+            actor_user=request.user,
+            request=request,
+            **serializer.validated_data,
+        )
+        return Response(TaskCompletionSerializer(completion, context={"request": request}).data)
+
+    @extend_schema(request=CorrectionRequestSerializer, responses=TicketSerializer)
+    @action(detail=True, methods=["post"], url_path="request-correction")
+    def request_correction(self, request, pk=None):
+        ticket = self.get_object()
+        serializer = CorrectionRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        ticket = request_ticket_correction(
+            ticket=ticket,
+            actor_user=request.user,
+            note=serializer.validated_data["note"],
+            request=request,
+        )
+        return Response(TicketSerializer(ticket, context={"request": request}).data)
+
     @action(detail=False, methods=["get"])
     def summary(self, request):
         queryset = self.filter_queryset(self.get_queryset())
@@ -206,3 +255,31 @@ class TicketViewSet(ModelViewSet):
             assigned_to_me=Count("id", filter=Q(assigned_to=request.user)),
         )
         return Response(counts)
+
+    @action(detail=False, methods=["get"], url_path="task-summary")
+    def task_summary(self, request):
+        queryset = self.filter_queryset(self.get_queryset()).filter(task_completion__isnull=False)
+        rows = (
+            queryset.values(
+                "task_completion__completed_by",
+                "task_completion__completed_by__email",
+            )
+            .annotate(
+                completed_tasks=Count("id"),
+                payroll_ready=Count("id", filter=Q(task_completion__payroll_link_approved=True)),
+                corrections=Count("id", filter=Q(status=Ticket.Status.NEEDS_CORRECTION)),
+            )
+            .order_by("task_completion__completed_by__email")
+        )
+        return Response(
+            [
+                {
+                    "user_id": row["task_completion__completed_by"],
+                    "email": row["task_completion__completed_by__email"],
+                    "completed_tasks": row["completed_tasks"],
+                    "payroll_ready": row["payroll_ready"],
+                    "corrections": row["corrections"],
+                }
+                for row in rows
+            ]
+        )
