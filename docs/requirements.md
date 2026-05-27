@@ -78,6 +78,25 @@ The core product rule is simple:
 - The mobile app must support staff tasks, onboarding, tickets, scanning, roster, leave, training, handover, incident reporting, and daily work updates.
 - Web and mobile must use the same backend data and keep workflow status consistent.
 
+### 3.10 Voice AI, Emergency, and Access Workflows
+
+- Staff should be able to use voice input for common mobile workflows such as creating tickets, searching tasks, scanning support, and asking operational questions.
+- Voice AI actions must keep transcripts, confidence scores, approval status, and audit history where required.
+- The system should support emergency workflows such as panic alerts, urgent incident escalation, emergency broadcasts, and clinic safety tickets.
+- Visitor, contractor, delivery, and temporary access workflows should support QR/barcode check-in, sign-in history, access alerts, and audit records.
+
+### 3.11 Communication and Daily Workspace
+
+- Staff should have one daily workspace showing today's tasks, tickets, appointments where relevant, roster, alerts, messages, handover notes, stock warnings, and pending approvals.
+- The system should support patient and business communication through channels such as SMS, email, phone notes, chat, and future messaging integrations.
+- Shift handover must allow staff to record pending issues, unresolved tickets, messages, stock alerts, and acknowledgement by the next shift.
+
+### 3.12 Configurable Workflows and Rules
+
+- Admins should be able to configure workflow templates, approval steps, role permissions, ticket categories, due dates, and escalation rules without code where practical.
+- Business rules should support examples such as overtime approval, payment approval limits, expiring documents, low stock alerts, and training overdue alerts.
+- Every important workflow change should be versioned and auditable.
+
 ## 4. Non-Functional Requirements
 
 - Security: role-based access, object-level permissions, secure authentication, and protection of sensitive healthcare and staff data.
@@ -90,6 +109,14 @@ The core product rule is simple:
 - Maintainability: backend, web, and mobile features should be delivered as tested vertical slices.
 - Reporting accuracy: dashboard and report numbers must match underlying records.
 - Compliance readiness: contracts, training, consent, incidents, approvals, and audit trails must be easy to review.
+- Data governance: core records such as users, patients where relevant, suppliers, assets, inventory items, AI agents, and tickets should have stable unique identifiers and a single source of truth.
+- Event history: important business actions should create event history that can support audit, reporting, automation, and future AI analysis.
+- Offline continuity: critical mobile workflows such as task viewing, barcode scanning, incident capture, and handover notes should support offline capture and later sync where practical.
+- Observability: production systems should support application logs, monitoring, error tracking, alerts, and workflow traceability.
+- Backup and recovery: the system must support reliable backups, restore testing, and a disaster recovery approach suitable for clinic operations.
+- Data retention: audit logs, contracts, documents, financial records, and patient-related operational records must follow approved retention and archival rules.
+- Integration readiness: the platform should be API-first and able to support future integrations with accounting, payroll, messaging, pharmacy, telehealth, Medicare, and healthcare interoperability standards where required.
+- AI governance: AI actions must be explainable, logged, reviewable, and limited by human approval for sensitive decisions.
 
 ## 5. Current Project Status
 
@@ -111,8 +138,24 @@ The MVP should focus on:
 - Staff mobile workflows for daily tasks, onboarding, roster, leave, scanning, and incidents.
 - Inventory and barcode workflows for stock and assets.
 - Payroll readiness based on verified work and approvals.
+- Configurable workflow templates and approval rules.
+- Voice AI support with audit controls.
+- Emergency, handover, communication, and visitor/access workflows.
 
-## 7. Open Questions for Product Team
+## 7. Future Enterprise Requirements
+
+These items may not all be required for the first launch, but they should influence product and architecture decisions:
+
+- Master data management for users, patients where relevant, suppliers, inventory, assets, AI agents, and tickets.
+- Event-driven automation so important business events can trigger alerts, tickets, approvals, and reports.
+- Rule engine for configurable payroll, approval, compliance, stock, training, and escalation rules.
+- Workforce intelligence for productivity, attendance reliability, burnout risk, overtime risk, and performance trends.
+- Risk and fraud monitoring for payroll inconsistencies, supplier issues, inventory loss, and unusual AI or user activity.
+- Healthcare interoperability readiness for future standards such as FHIR, HL7, SNOMED CT, and ICD-10 where clinically relevant.
+- Advanced AI supervision with model versioning, prompt/action logs, confidence scores, human override, and bias or safety checks.
+- Modular platform design so future modules such as telehealth, medical billing, pharmacy, franchise operations, and external partner APIs can be added without rebuilding the core.
+
+## 8. Open Questions for Product Team
 
 - Which modules are mandatory for first launch?
 - What exact patient information can be stored in the MVP?
@@ -121,3 +164,5 @@ The MVP should focus on:
 - Which contract, policy, consent, and training templates are approved?
 - Which barcode formats and physical labels should be used?
 - Which external systems must be integrated before launch?
+- Which emergency, visitor/access, and offline workflows are required for the first launch?
+- Which future healthcare integrations or interoperability standards should be planned from day one?
